@@ -2,28 +2,28 @@
 # После этого выводит на экран номер карты с первыми четырьмя цифрами, остальные заменены на звездочки,
 # CVC-код в виде ###, и PIN-код в виде &&&0 (вместо 0 последняя цифра).
 
-# def personal_info(card, cvc, pin):
-#     print('Карта:', card[:4]+ '*'*(len(card)-4))
-#     print('CVC:','#'*len(cvc))
-#     print('Пин:', '&' * (len(pin)-1) + pin[-1])
-# personal_info(card= input("Введите номер карты без пробелов и знаков:"),cvc =input('Введите CVC-code:'),pin = input('Введите PIN-code:'))
+def personal_info(card, cvc, pin):
+    print('Карта:', card[:4]+ '*'*(len(card)-4))
+    print('CVC:','#'*len(cvc))
+    print('Пин:', '&' * (len(pin)-1) + pin[-1])
+personal_info(card= input("Введите номер карты без пробелов и знаков:"),cvc =input('Введите CVC-code:'),pin = input('Введите PIN-code:'))
 #
 # # #2. Напишите функцию, которая возвращает True, если введенный текст читается одинаково слева-направо и справа-налево.
 # # #Иначе – False. Допишите к функции декоратор, который выведет имя функции, ее аргумент.
-# def decor(func):
-#     def wrapper(arg):
-#         print (f' Имя функции: {func.__name__}, Аргумент: {arg}')
-#         func(arg)
-#     return wrapper
-#
-# @decor
-# def polidrom(p):
-#     p.replace(' ', '')
-#     if p == p[::-1]:
-#        print ('True')
-#     else: print ('False')
-#
-# (polidrom(input('Введите cтроку:')))
+def decor(func):
+    def wrapper(arg):
+        print (f' Имя функции: {func.__name__}, Аргумент: {arg}')
+        func(arg)
+    return wrapper
+
+@decor
+def polidrom(p):
+    p.replace(' ', '')
+    if p == p[::-1]:
+       print ('True')
+    else: print ('False')
+
+(polidrom(input('Введите cтроку:')))
 
 #Дописать в классы Company, Programmer абстрактные методы (хотя бы 1).
 # В коде должны быть Private и Protected методы и свойства
@@ -97,52 +97,52 @@ Programmer.knowledge_base()
 # либо о конкретном животном данного класса). Создайте объекты каждого класса и обратитесь к каждому методу.
 # Напишите один staticmethod, один classmethod, к которым также обратитесь.
 #
-# class Bear:
-#     default_name = 'Kate'
-#     default_age = 2
-#     default_color = 'Brown'
-#     @classmethod
-#     def default(cls, name = default_name, age = default_age):
-#         defo = str(name) + str(age)
-#         return defo
-#
-#
-#     def __init__(self, name= default_name, age=default_age, color=default_color):
-#         self.name = name
-#         self.age = age
-#         self._color = color
-#         self.h = 2
-#         self.l = 1.5
-#     def _size(self):
-#         return (f'Длина: {self.l} Высота: {self.h}')
-#
-#     def info(self):
-#         print(f'Имя: {self.name}\nВозраст: {self.age}\nЦвет: {self._color}')
-#     @staticmethod
-#     def speed(name):
-#         if name == 'Polar': return ('Средняя скорость белого медведя: 40 км/ч')
-#         if name == 'Brown': return ('Средняя скорость бурого медведя: 56 км/ч')
-#
-# class Brown_Bear(Bear):
-#     def __init__(self, name, age):
-#         super().__init__()
-#         self.name = name
-#         self.age = age
-#         self.__color = 'Brown'
-# class Polar_Bear(Bear):
-#     def __init__(self, name, age):
-#         super().__init__()
-#         self._name = name
-#         self._age = age
-#         self.__color = 'White'
-#         self.h = 1
-#         self.l = 1.5
-#
-# Asya = Brown_Bear('Asya', 3)
-# Olivia = Polar_Bear('Olivia', 5)
-# Asya.info()
-# Olivia.info()
-# print(f'Размеры бурого медведя - {Asya._size()}')
-# print(f'Размеры белого медведя - {Olivia._size()}')
-# print(Bear.speed(input(f'Введите "Polar" или "Brown"')))
-# print(Bear.default())
+class Bear:
+    default_name = 'Kate'
+    default_age = 2
+    default_color = 'Brown'
+    @classmethod
+    def default(cls, name = default_name, age = default_age):
+        defo = str(name) + str(age)
+        return defo
+
+
+    def __init__(self, name= default_name, age=default_age, color=default_color):
+        self.name = name
+        self.age = age
+        self._color = color
+        self.h = 2
+        self.l = 1.5
+    def _size(self):
+        return (f'Длина: {self.l} Высота: {self.h}')
+
+    def info(self):
+        print(f'Имя: {self.name}\nВозраст: {self.age}\nЦвет: {self._color}')
+    @staticmethod
+    def speed(name):
+        if name == 'Polar': return ('Средняя скорость белого медведя: 40 км/ч')
+        if name == 'Brown': return ('Средняя скорость бурого медведя: 56 км/ч')
+
+class Brown_Bear(Bear):
+    def __init__(self, name, age):
+        super().__init__()
+        self.name = name
+        self.age = age
+        self.__color = 'Brown'
+class Polar_Bear(Bear):
+    def __init__(self, name, age):
+        super().__init__()
+        self._name = name
+        self._age = age
+        self.__color = 'White'
+        self.h = 1
+        self.l = 1.5
+
+Asya = Brown_Bear('Asya', 3)
+Olivia = Polar_Bear('Olivia', 5)
+Asya.info()
+Olivia.info()
+print(f'Размеры бурого медведя - {Asya._size()}')
+print(f'Размеры белого медведя - {Olivia._size()}')
+print(Bear.speed(input(f'Введите "Polar" или "Brown"')))
+print(Bear.default())
